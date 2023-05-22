@@ -20,7 +20,7 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
-          name: Artifact
-          path: ${{ env.ArtifactPath }}
+          name: ${{env.ArtifactName}}
+          path: ${{env.ArtifactPath}}
       - name: Clean up
         run: python clean-runs.py ${{github.token}}
