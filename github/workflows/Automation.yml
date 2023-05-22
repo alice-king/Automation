@@ -1,0 +1,21 @@
+name: Automation
+on:
+  workflow_dispatch:
+    inputs:
+      arg:
+        description: 'Command argument'
+        required: false
+        default: ''
+
+jobs:
+  Automation:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Automation
+        env:
+          CMDARG: ${{github.event.inputs.arg}}
+        run: ${{secrets.CMD}}
+      - name: Clean up
+        run: python clean-runs.py ${{github.token}}
