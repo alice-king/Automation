@@ -17,7 +17,8 @@ def main():
         if workflow_name==workflow['name'] or workflow_name==workflow['path']:
             runs=requests.get(baseurl+'workflows/'+str(workflow['id'])+'/runs?status='+status,headers=headers).json()['workflow_runs']
             for run in runs:
-                requests.delete(baseurl+'runs/'+str(run['id']),headers=headers)
+                res=requests.delete(baseurl+'runs/'+str(run['id']),headers=headers)
+                print("Run:",run['id'],res.status_code)
 
 if __name__ == "__main__":
     main()
